@@ -24,6 +24,10 @@ def _reify(t, s):
 def _reify(t, s):
     return list(reify(iter(t), s))
 
+@dispatch(set, dict)
+def _reify(t, s):
+    return set(reify(iter(t), s))
+
 @dispatch(dict, dict)
 def _reify(d, s):
     return dict((k, reify(v, s)) for k, v in d.items())
